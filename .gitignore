@@ -1,0 +1,5 @@
+dist/
+content/
+node_modules/
+.claude/
+.astro/
