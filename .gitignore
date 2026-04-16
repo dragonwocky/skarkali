@@ -1,5 +1,8 @@
+.env
+*.local
+
 dist/
-content/
-node_modules/
-.claude/
 .astro/
+.claude/
+.vscode/
+node_modules/
