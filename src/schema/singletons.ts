@@ -1,40 +1,27 @@
 import iso639 from "iso-639-1";
 import { fields, singleton } from "@keystatic/core";
-import { colour } from "./fields/colour.tsx";
+import { colour } from "@/packages/keystatic/fields/index.tsx";
 
 const CONTENT_PATH = "src/content/settings";
 
-const getTz = (tz: string, date: Date = new Date()) =>
-    new Intl.DateTimeFormat("default", {
-      timeZoneName: "short",
-      timeZone: tz,
-    }).format(date).split(" ")[1],
-  getTzOffset = (tz: string, date: Date = new Date()) =>
+const getTime = (tz: string, date: Date = new Date()) =>
     new Date(new Intl.DateTimeFormat("default", {
       dateStyle: "short",
       timeStyle: "short",
       timeZone: tz,
     }).format(date)).getTime(),
-  getTzList = () => {
-    let defaultValue = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  getTimeZones = () => {
     const now = new Date(),
-      options: { label: string; value: string }[] = [],
-      zones = Object.groupBy(
-        Intl.supportedValuesOf("timeZone")
-          .filter((tz) => !tz.includes("GMT") && !tz.includes("UTC")),
-        (tz) => getTz(tz, now),
-      ) as Record<string, string[]>;
-    for (const zone in zones) {
-      const tz = zones[zone][0],
-        cities = zones[zone].sort()
-          .map((tz) => tz.slice(tz.indexOf("/") + 1).replace(/_/g, " "));
-      options.push({ label: `${cities.join(", ")} (${zone})`, value: tz });
-      if (zones[zone].includes(defaultValue)) defaultValue = tz;
+      defaultValue = Intl.DateTimeFormat().resolvedOptions().timeZone,
+      timeZones = Intl.supportedValuesOf("timeZone"),
+      options: { label: string; value: string }[] = [];
+    for (const tz of timeZones) {
+      if (!tz.startsWith("Etc/")) options.push({ label: tz, value: tz });
     }
     return {
       defaultValue,
       options: options.sort((a, b) =>
-        getTzOffset(a.value, now) - getTzOffset(b.value, now)
+        getTime(a.value, now) - getTime(b.value, now)
       ),
     };
   };
@@ -51,7 +38,7 @@ const metadata = singleton({
     timezone: fields.select({
       label: "Publication timezone",
       description: "Set the time and date your site is published in.",
-      ...getTzList(),
+      ...getTimeZones(),
     }),
     language: fields.select({
       label: "Publication language",
@@ -84,6 +71,7 @@ const appearance = singleton({
     accent: colour({
       label: "Accent colour",
       defaultValue: "#ff2056",
+      description: "wassup",
     }),
     colorScheme: fields.select({
       label: "Colour scheme",

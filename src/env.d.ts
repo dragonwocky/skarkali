@@ -1,8 +1,17 @@
 /// <reference path="../.astro/types.d.ts" />
 /// <reference types="astro/client" />
 
-declare module "*.yaml" {
-  // deno-lint-ignore no-explicit-any
-  const value: any;
-  export default value;
+declare module "keystatic:config" {
+  import type { Config } from "../keystatic.config.ts";
+  export type {
+    Collection,
+    Collections,
+    Config,
+    Schema,
+    Singleton,
+    Singletons,
+  } from "../keystatic.config.ts";
+
+  const config: Config;
+  export default config;
 }

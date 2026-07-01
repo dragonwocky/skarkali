@@ -1,10 +1,11 @@
 import {
-  type Collection,
+  type Collection as CollectionGeneric,
   type ComponentSchema,
+  type Config as ConfigGeneric,
   config,
-  type Singleton,
+  type Singleton as SingletonGeneric,
 } from "@keystatic/core";
-import { posts, tags } from "./src/schema/collections.ts";
+import { posts, tags } from "@/schema/collections.tsx";
 import {
   appearance,
   developer,
@@ -12,11 +13,14 @@ import {
   navigation,
   socials,
   users,
-} from "./src/schema/singletons.ts";
+} from "@/schema/singletons.ts";
 
-type Schema = Record<string, ComponentSchema>;
-type Collections = Record<string, Collection<Schema, string>>;
-type Singletons = Record<string, Singleton<Schema>>;
+export type Schema = Record<string, ComponentSchema>;
+export type Collection = CollectionGeneric<Schema, string>;
+export type Collections = Record<string, Collection>;
+export type Singleton = SingletonGeneric<Schema>;
+export type Singletons = Record<string, Singleton>;
+export type Config = ConfigGeneric<Collections, Singletons>;
 
 const isAdministrator = true,
   isEditor = isAdministrator || false,
@@ -30,14 +34,13 @@ isEditor && Object.assign(singletons, { navigation, socials });
 isAdministrator && Object.assign(singletons, { developer, users });
 
 export default config({
+  singletons,
+  collections,
   storage: { kind: "local" },
   ui: {
-    brand: { name: import.meta.env.PUBLIC_HOSTNAME },
     navigation: {
       "Content": Object.keys(collections),
       "Settings": Object.keys(singletons),
     },
   },
-  singletons,
-  collections,
 });

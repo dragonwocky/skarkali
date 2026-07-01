@@ -1,0 +1,33 @@
+---
+export const prerender = false;
+
+import App from "./keystatic-app.tsx";
+import Layout from "./keystatic-layout.astro";
+import { getSingleton } from "./content";
+
+const { title } = await getSingleton("metadata");
+---
+
+<Layout>
+  <title>Keystatic{title ? ` - ${title}` : ""}</title>
+  <App client:only="react" />
+  <style is:global>
+    .kui\:reset[role="dialog"] {
+      z-index: 2;
+    }
+    [data-layout="main"]
+      [role="group"]:last-child
+      .kui\:ActionButton:last-child {
+      margin-right: var(--kui-size-space-regular);
+    }
+    .ProseMirror-blockParent [data-ignore-content] {
+      padding: var(--kui-size-scale-75);
+    }
+    .ProseMirror-blockParent [data-ignore-content] + .kui\:reset:empty {
+      display: none;
+    }
+    .ProseMirror-blockParent [data-ignore-content] .kui\:Button {
+      border-radius: var(--kui-size-radius-full);
+    }
+  </style>
+</Layout>

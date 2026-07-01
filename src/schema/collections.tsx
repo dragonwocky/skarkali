@@ -1,4 +1,5 @@
 import { collection, fields } from "@keystatic/core";
+import { Aside, Highlight } from "@/packages/keystatic/components/index.tsx";
 
 const CONTENT_PATH = "src/content";
 
@@ -53,6 +54,13 @@ export const posts = collection({
       ],
     }),
     feature_image: fields.image({ label: "Feature image" }),
-    content: fields.markdoc({ label: "Content", extension: "mdoc" }),
+    content: fields.markdoc({
+      label: "Content",
+      extension: "md",
+      components: {
+        Aside,
+        Highlight,
+      },
+    }),
   },
 });

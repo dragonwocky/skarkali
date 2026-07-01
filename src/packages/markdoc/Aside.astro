@@ -1,0 +1,8 @@
+---
+const { icon, colour } = Astro.props;
+---
+
+<div class={`kg-card kg-callout-card kg-callout-card-${colour}`}>
+  <div class="kg-callout-emoji">{icon}</div>
+  <div class="kg-callout-text"><slot /></div>
+</div>
