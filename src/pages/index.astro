@@ -5,9 +5,11 @@ import { posts } from "../schema/collections";
 import { render, fromMarkdoc } from "@/packages/comark";
 
 const data = await getEntry<typeof posts>("posts", "index"),
-  { node } = await data.content();
+  { node } = await data.content(),
+  ast = fromMarkdoc(node),
+  html = await render(ast);
 ---
 
 <Layout>
-  <main set:html={render(fromMarkdoc(node))} />
+  <Fragment set:html={html} />
 </Layout>

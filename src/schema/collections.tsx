@@ -1,5 +1,5 @@
 import { collection, fields } from "@keystatic/core";
-import { Aside } from "@/packages/keystatic/components/Aside.tsx";
+import { Callout } from "../packages/keystatic/components/Callout.tsx";
 import { Highlight } from "@/packages/keystatic/components/Highlight.tsx";
 
 const CONTENT_PATH = "src/content";
@@ -59,7 +59,7 @@ export const posts = collection({
       label: "Content",
       extension: "md",
       components: {
-        Aside,
+        Callout,
         Highlight,
       },
     }),

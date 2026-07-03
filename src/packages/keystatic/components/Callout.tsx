@@ -1,8 +1,8 @@
 import { fields } from "@keystatic/core";
 import { wrapper } from "@keystatic/core/content-components";
 
-export const Aside = wrapper({
-  label: "Aside",
+export const Callout = wrapper({
+  label: "Callout",
   schema: {
     icon: fields.text({ label: "Emoji icon..." }),
   },

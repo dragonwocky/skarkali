@@ -38,7 +38,9 @@ Comark supports footnotes[^1] with back-references[^2].
 [^1]: Footnotes are rendered as a list at the end of the document.
 [^2]: Each footnote includes a back-reference link to return to the text.
 
----
+{% Callout icon="⌛" %}
+Callout.
+{% /Callout %}
 
 > ## Quoted heading.
 > 
@@ -58,25 +60,15 @@ Comark supports footnotes[^1] with back-references[^2].
 - TR1C1
 - TR1C2
 
-  # With heading!
-
   ```html
   <div>Code block!</div>
   ```
-
-  {% Aside icon="⌛" %}
-  Aside.
-  {% /Aside %}
 - TR1C3
 ---
 - TR2C1
 - TR2C2
 - TR2C3
 {% /table %}
-
-{% Aside icon="⌛" %}
-Aside.
-{% /Aside %}
 
 <!-- Comment -->
 
