@@ -2,12 +2,12 @@
 import { getEntry } from "@/packages/keystatic/content";
 import Layout from "@/packages/echeveria/Layout.astro";
 import { posts } from "../schema/collections";
-import { renderMarkdoc } from "@/packages/comark";
+import { render, fromMarkdoc } from "@/packages/comark";
 
 const data = await getEntry<typeof posts>("posts", "index"),
   { node } = await data.content();
 ---
 
 <Layout>
-  <main set:html={renderMarkdoc(node)} />
+  <main set:html={render(fromMarkdoc(node))} />
 </Layout>

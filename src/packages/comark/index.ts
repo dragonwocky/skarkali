@@ -35,4 +35,4 @@ export {
 };
 
 export { fromMarkdoc } from "./parse.ts";
-export { render, renderMarkdoc } from "./render.ts";
+export { render, renderMarkdown } from "./render.ts";
