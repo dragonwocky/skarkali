@@ -16,6 +16,6 @@ export const getCollection = (id: string) =>
 export const getEntry = <E extends Collection>(
   id: string,
   slug: string,
-): Entry<E> =>
+): Promise<Entry<E>> =>
   reader.collections[id].read(slug)
     .then((content: unknown) => content || {});

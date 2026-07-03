@@ -1,5 +1,6 @@
 import { collection, fields } from "@keystatic/core";
-import { Aside, Highlight } from "@/packages/keystatic/components/index.tsx";
+import { Aside } from "@/packages/keystatic/components/Aside.tsx";
+import { Highlight } from "@/packages/keystatic/components/Highlight.tsx";
 
 const CONTENT_PATH = "src/content";
 

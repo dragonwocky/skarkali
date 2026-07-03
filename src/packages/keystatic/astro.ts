@@ -20,12 +20,12 @@ export default function keystatic(): AstroIntegration {
           },
         });
         injectRoute({
-          entrypoint: "./src/packages/keystatic/keystatic-app.astro",
+          entrypoint: "./src/packages/keystatic/App.astro",
           pattern: "/keystatic/[...params]",
           prerender: false,
         });
         injectRoute({
-          entrypoint: "./src/packages/keystatic/keystatic-api.ts",
+          entrypoint: "./src/packages/keystatic/api.ts",
           pattern: "/api/keystatic/[...params]",
           prerender: false,
         });

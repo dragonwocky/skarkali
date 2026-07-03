@@ -1,9 +1,9 @@
 ---
 export const prerender = false;
 
-import App from "./keystatic-app.tsx";
-import Layout from "./keystatic-layout.astro";
-import { getSingleton } from "./content";
+import App from "@/packages/keystatic/app.tsx";
+import Layout from "@/packages/keystatic/Layout.astro";
+import { getSingleton } from "@/packages/keystatic/content.ts";
 
 const { title } = await getSingleton("metadata");
 ---
