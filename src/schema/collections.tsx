@@ -1,6 +1,5 @@
 import { collection, fields } from "@keystatic/core";
-import { Callout } from "../packages/keystatic/components/Callout.tsx";
-import { Highlight } from "@/packages/keystatic/components/Highlight.tsx";
+import * as components from "../packages/keystatic/components.ts";
 
 const CONTENT_PATH = "src/content";
 
@@ -58,10 +57,7 @@ export const posts = collection({
     content: fields.markdoc({
       label: "Content",
       extension: "md",
-      components: {
-        Callout,
-        Highlight,
-      },
+      components,
     }),
   },
 });

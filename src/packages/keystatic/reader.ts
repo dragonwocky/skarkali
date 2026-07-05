@@ -1,7 +1,7 @@
-import process from "node:process";
 import { createReader, type Entry } from "@keystatic/core/reader";
 import config from "keystatic:config";
-import type { Collection } from "keystatic:config";
+import process from "node:process";
+import type { Collection } from "./types.ts";
 
 const reader = createReader(process.cwd(), config);
 

@@ -1,8 +1,8 @@
 ---
-import { getEntry } from "@/packages/keystatic/content";
-import Layout from "@/packages/echeveria/Layout.astro";
+import Layout from "../layout.astro";
+import { fromMarkdoc, render } from "../packages/comark";
+import { getEntry } from "../packages/keystatic/reader";
 import { posts } from "../schema/collections";
-import { render, fromMarkdoc } from "@/packages/comark";
 
 const data = await getEntry<typeof posts>("posts", "index"),
   { node } = await data.content(),

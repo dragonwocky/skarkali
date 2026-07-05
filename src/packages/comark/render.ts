@@ -1,11 +1,9 @@
 import { renderHTML } from "@comark/html";
 import type { ComarkTree } from "comark";
 import { renderMarkdown as _renderMarkdown } from "comark/render";
-import { anchors, highlight, tables } from "./plugins.ts";
-import { Callout } from "./components/Callout.ts";
 import { minify } from "html-minifier-next";
-
-const components = { Callout };
+import * as components from "./components.ts";
+import { anchors, highlight, tables } from "./plugins.ts";
 
 export const render = async (ast: ComarkTree) => {
   ast = await highlight(anchors(tables(ast, "html")));

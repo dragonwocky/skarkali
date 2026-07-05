@@ -1,11 +1,9 @@
-import {
-  type Collection as CollectionGeneric,
-  type ComponentSchema,
-  type Config as ConfigGeneric,
-  config,
-  type Singleton as SingletonGeneric,
-} from "@keystatic/core";
-import { posts, tags } from "@/schema/collections.tsx";
+import { config } from "@keystatic/core";
+import type {
+  Collections,
+  Singletons,
+} from "./src/packages/keystatic/types.ts";
+import { posts, tags } from "./src/schema/collections.tsx";
 import {
   appearance,
   developer,
@@ -13,14 +11,7 @@ import {
   navigation,
   socials,
   users,
-} from "@/schema/singletons.ts";
-
-export type Schema = Record<string, ComponentSchema>;
-export type Collection = CollectionGeneric<Schema, string>;
-export type Collections = Record<string, Collection>;
-export type Singleton = SingletonGeneric<Schema>;
-export type Singletons = Record<string, Singleton>;
-export type Config = ConfigGeneric<Collections, Singletons>;
+} from "./src/schema/singletons.ts";
 
 const isAdministrator = true,
   isEditor = isAdministrator || false,

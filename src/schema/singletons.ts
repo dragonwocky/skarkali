@@ -1,6 +1,6 @@
 import iso639 from "iso-639-1";
 import { fields, singleton } from "@keystatic/core";
-import { colour } from "@/packages/keystatic/fields/index.tsx";
+import { colour } from "../packages/keystatic/fields.tsx";
 
 const CONTENT_PATH = "src/content/settings";
 
@@ -36,12 +36,12 @@ const metadata = singleton({
     }),
     description: fields.text({ label: "Site description" }),
     timezone: fields.select({
-      label: "Publication timezone",
+      label: "Site timezone",
       description: "Set the time and date your site is published in.",
       ...getTimeZones(),
     }),
     language: fields.select({
-      label: "Publication language",
+      label: "Site language",
       description: "Set the language your site is published in.",
       defaultValue: "en",
       options: iso639.getAllCodes().map((code) => ({

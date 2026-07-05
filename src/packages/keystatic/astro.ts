@@ -11,21 +11,20 @@ export default function keystatic(): AstroIntegration {
               {
                 name: "keystatic",
                 resolveId(id) {
-                  const config = () => this.resolve("./keystatic.config");
-                  if (id === "keystatic:config") return config();
-                  return null;
+                  if (id !== "keystatic:config") return null;
+                  return this.resolve("keystatic.config");
                 },
               },
             ],
           },
         });
         injectRoute({
-          entrypoint: "./src/packages/keystatic/App.astro",
+          entrypoint: "./src/packages/keystatic/astro/keystatic-page.astro",
           pattern: "/keystatic/[...params]",
           prerender: false,
         });
         injectRoute({
-          entrypoint: "./src/packages/keystatic/api.ts",
+          entrypoint: "./src/packages/keystatic/astro/keystatic-api.ts",
           pattern: "/api/keystatic/[...params]",
           prerender: false,
         });
